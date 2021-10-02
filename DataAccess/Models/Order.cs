@@ -12,7 +12,7 @@ namespace DataAccess.Models
         public List<OrderItem> Items { get; set; }
         public decimal PriceTotal { get; set; }
         public decimal DiscountTotal { get; set; }
-        public decimal OrderTotal { get; set; }
+        public decimal OrderTotal { get => PriceTotal - DiscountTotal; }
         public OrderStatus Status { get; set; }
     }
 }

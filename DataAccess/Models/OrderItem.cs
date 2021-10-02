@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    public class OrderItem
+    public class OrderItem : Item
     {
-        public int Id { get; set; }
-        public Item Item { get; set; }
-        public decimal Price { get; set; }
         public decimal Discount { get; set; }
-        public decimal Total { get; set; }
+        public decimal Total { get => Price - Discount; }
     }
 }
