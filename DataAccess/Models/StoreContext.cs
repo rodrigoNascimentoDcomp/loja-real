@@ -22,7 +22,7 @@ namespace DataAccess.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Item>()
-                .HasKey(x => x.Id);
+                .HasKey(x => x.ItemId);
 
             modelBuilder.Entity<Item>()
                 .Property(x => x.Price)
@@ -31,10 +31,10 @@ namespace DataAccess.Models
             modelBuilder.Entity<Item>()
                 .HasOne(x => x.Product)
                 .WithMany()
-                .HasForeignKey(x => x.Product);
+                .HasForeignKey(x => x.ProductId);
 
             modelBuilder.Entity<Order>()
-                .HasKey(x => x.Id);
+                .HasKey(x => x.OrderId);
 
             modelBuilder.Entity<Order>()
                 .HasMany(x => x.Items)
@@ -56,17 +56,21 @@ namespace DataAccess.Models
                 .HasConversion<int>();
 
             modelBuilder.Entity<OrderItem>()
-                .HasKey(x => x.Id);
+                .HasKey(x => x.OrderItemId);
             
             modelBuilder.Entity<OrderItem>()
                 .HasOne(x => x.Item)
                 .WithMany()
-                .HasForeignKey(x => x.Item);
+                .HasForeignKey(x => x.ItemId);
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(x => x.Order)
                 .WithMany()
-                .HasForeignKey(x => x.Order);
+                .HasForeignKey(x => x.OrderId);
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(x => x.Price)
+                .HasPrecision(6, 2);
 
             modelBuilder.Entity<OrderItem>()
                 .Property(x => x.Discount)

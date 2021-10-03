@@ -7,10 +7,15 @@ namespace DataAccess.Models
 {
     public class OrderItem
     {
-        public int Id { get; set; }
-        public Item Item { get; set; }
+        public int OrderItemId { get; set; }
+        public decimal Price { get; set; }
         public decimal Discount { get; set; }
-        public decimal Total { get => Item.Price - Discount; }
+        public decimal Total { get => Price - Discount; }
+
+        public int ItemId { get; set; }
+        public Item Item { get; set; }
+
+        public int OrderId { get; set; }
         public Order Order { get; set; }
     }
 }
