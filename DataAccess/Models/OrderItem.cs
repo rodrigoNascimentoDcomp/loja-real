@@ -9,5 +9,6 @@ namespace DataAccess.Models
     {
         public decimal Discount { get; set; }
         public decimal Total { get => Price - Discount; }
+        public Order Order { get; set; }
     }
 }
