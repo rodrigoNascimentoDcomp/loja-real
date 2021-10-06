@@ -79,6 +79,11 @@ namespace DataAccess.Models
             modelBuilder.Entity<OrderItem>()
                 .Ignore(x => x.Total);
 
+            modelBuilder.Entity<Product>()
+                .HasOne(x => x.Category)
+                .WithMany()
+                .HasForeignKey(x => x.ProductCategoryId);
+
             base.OnModelCreating(modelBuilder);
         }
     }
