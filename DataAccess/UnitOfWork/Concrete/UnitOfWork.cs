@@ -1,4 +1,6 @@
 ﻿using DataAccess.Models;
+using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Concrete;
 using DataAccess.UnitOfWork.Abstract;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,14 @@ namespace DataAccess.UnitOfWork.Concrete
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private StoreContext context = new StoreContext();
+        private readonly StoreContext context = new();
+
+        private IProductCategoryRepository _productCategoryRepository;
+
+        public UnitOfWork(StoreContext context) => this.context = context;
+
+        public IProductCategoryRepository ProductCategoryRepository =>
+            _productCategoryRepository ??= new ProductCategoryRepository(context);
 
         public int Save()
         {
