@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Repositories.Concrete
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IDisposable, IGenericRepository<TEntity> where TEntity : class
     {
         internal StoreContext context;
         internal DbSet<TEntity> dbSet;
@@ -77,6 +77,31 @@ namespace DataAccess.Repositories.Concrete
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
