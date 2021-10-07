@@ -1,14 +1,15 @@
-﻿using System;
+﻿using DataAccess.Models;
+using DataAccess.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using DataAccess.Models;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories.Concrete
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         internal StoreContext context;
         internal DbSet<TEntity> dbSet;
