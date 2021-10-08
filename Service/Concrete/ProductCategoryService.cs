@@ -14,10 +14,7 @@ namespace Service.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductCategoryService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public ProductCategoryService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         public IEnumerable<ProductCategory> Get(
             Expression<Func<ProductCategory, bool>> filter = null,
@@ -32,5 +29,7 @@ namespace Service.Concrete
         public void Delete(int id) => _unitOfWork.ProductCategoryRepository.Delete(id);
 
         public void Update(ProductCategory entityToUpdate) => _unitOfWork.ProductCategoryRepository.Update(entityToUpdate);
+
+        public void Save() => _unitOfWork.ProductCategoryRepository.Save();
     }
 }

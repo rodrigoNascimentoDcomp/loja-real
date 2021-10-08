@@ -16,18 +16,14 @@ namespace Service.Abstract
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        TEntity GetByID(object id);
+        TEntity GetByID(int id);
 
         void Insert(TEntity entity);
 
-        void Delete(object id);
-
-        void Delete(TEntity entityToDelete);
+        void Delete(int id);
 
         void Update(TEntity entityToUpdate);
 
         void Save();
-
-        void Dispose();
     }
 }

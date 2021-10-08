@@ -9,19 +9,8 @@ using System.Linq.Expressions;
 
 namespace Service.Abstract
 {
-    public interface IProductCategoryService
+    public interface IProductCategoryService : IGenericService<ProductCategory>
     {
-        IEnumerable<ProductCategory> Get(
-            Expression<Func<ProductCategory, bool>> filter = null,
-            Func<IQueryable<ProductCategory>, IOrderedQueryable<ProductCategory>> orderBy = null,
-            string includeProperties = "");
-
-        ProductCategory GetByID(int id);
-
-        void Insert(ProductCategory entity);
-
-        void Delete(int id);
-
-        void Update(ProductCategory entityToUpdate);
+        
     }
 }
