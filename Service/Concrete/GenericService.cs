@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service.Concrete
 {
-    public class GenericService<T> : IGenericService<T> where T : class
+    public class GenericService<T> : IDisposable, IGenericService<T> where T : class
     {
         private readonly IGenericRepository<T> _repository;
 
@@ -33,5 +33,30 @@ namespace Service.Concrete
         public void Delete(T entityToDelete) => _repository.Delete(entityToDelete);
 
         public void Update(T entityToUpdate) => _repository.Update(entityToUpdate);
+
+        public void Save()
+        {
+            _repository.Save();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _repository.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

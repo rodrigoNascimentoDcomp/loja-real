@@ -25,5 +25,9 @@ namespace Service.Abstract
         void Delete(T entityToDelete);
 
         void Update(T entityToUpdate);
+
+        void Save();
+
+        void Dispose();
     }
 }
