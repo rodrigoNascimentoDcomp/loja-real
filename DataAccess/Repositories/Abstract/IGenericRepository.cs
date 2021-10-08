@@ -9,22 +9,22 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Repositories.Abstract
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable<T> Get(
-            Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        T GetByID(object id);
+        TEntity GetByID(object id);
 
-        void Insert(T entity);
+        void Insert(TEntity entity);
 
         void Delete(object id);
 
-        void Delete(T entityToDelete);
+        void Delete(TEntity entityToDelete);
 
-        void Update(T entityToUpdate);
+        void Update(TEntity entityToUpdate);
 
         void Save();
 

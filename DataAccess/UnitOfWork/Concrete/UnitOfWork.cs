@@ -11,32 +11,29 @@ namespace DataAccess.UnitOfWork.Concrete
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly StoreContext context = new();
+        private readonly StoreContext _context = new();
 
         private IProductCategoryRepository _productCategoryRepository;
 
-        public UnitOfWork(StoreContext context) => this.context = context;
+        public UnitOfWork(StoreContext context) => _context = context;
 
         public IProductCategoryRepository ProductCategoryRepository =>
-            _productCategoryRepository ??= new ProductCategoryRepository(context);
+            _productCategoryRepository ??= new ProductCategoryRepository(_context);
 
-        public int Save()
-        {
-            return context.SaveChanges();
-        }
+        public int Save() => _context.SaveChanges();
 
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
-            this.disposed = true;
+            disposed = true;
         }
 
         public void Dispose()

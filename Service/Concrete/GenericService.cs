@@ -9,48 +9,43 @@ using System.Threading.Tasks;
 
 namespace Service.Concrete
 {
-    public class GenericService<T> : IDisposable, IGenericService<T> where T : class
+    public class GenericService<TEntity> : IDisposable, IGenericService<TEntity> where TEntity : class
     {
-        private readonly IGenericRepository<T> _repository;
+        private readonly IGenericRepository<TEntity> _repository;
 
-        public GenericService(IGenericRepository<T> repository, IUnitOfWork unitOfWork)
-        {
+        public GenericService(IGenericRepository<TEntity> repository, IUnitOfWork unitOfWork) =>
             _repository = repository;
-        }
 
-        public IEnumerable<T> Get(
-            Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        public IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "") =>
             _repository.Get(filter, orderBy, includeProperties);
 
-        public T GetByID(object id) => _repository.GetByID(id);
+        public TEntity GetByID(object id) => _repository.GetByID(id);
 
-        public void Insert(T entity) => _repository.Insert(entity);
+        public void Insert(TEntity entity) => _repository.Insert(entity);
 
         public void Delete(object id) => _repository.Delete(id);
 
-        public void Delete(T entityToDelete) => _repository.Delete(entityToDelete);
+        public void Delete(TEntity entityToDelete) => _repository.Delete(entityToDelete);
 
-        public void Update(T entityToUpdate) => _repository.Update(entityToUpdate);
+        public void Update(TEntity entityToUpdate) => _repository.Update(entityToUpdate);
 
-        public void Save()
-        {
-            _repository.Save();
-        }
+        public void Save() => _repository.Save();
 
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
                     _repository.Dispose();
                 }
             }
-            this.disposed = true;
+            disposed = true;
         }
 
         public void Dispose()

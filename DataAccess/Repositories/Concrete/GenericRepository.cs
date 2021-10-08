@@ -17,7 +17,7 @@ namespace DataAccess.Repositories.Concrete
         public GenericRepository(StoreContext context)
         {
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            dbSet = context.Set<TEntity>();
         }
 
         public virtual IEnumerable<TEntity> Get(
@@ -48,15 +48,9 @@ namespace DataAccess.Repositories.Concrete
             }
         }
 
-        public virtual TEntity GetByID(object id)
-        {
-            return dbSet.Find(id);
-        }
+        public virtual TEntity GetByID(object id) => dbSet.Find(id);
 
-        public virtual void Insert(TEntity entity)
-        {
-            dbSet.Add(entity);
-        }
+        public virtual void Insert(TEntity entity) => dbSet.Add(entity);
 
         public virtual void Delete(object id)
         {
@@ -79,23 +73,20 @@ namespace DataAccess.Repositories.Concrete
             context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+        public void Save() => context.SaveChanges();
 
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
                     context.Dispose();
                 }
             }
-            this.disposed = true;
+            disposed = true;
         }
 
         public void Dispose()
