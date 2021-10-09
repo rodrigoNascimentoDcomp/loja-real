@@ -99,7 +99,10 @@ namespace DataAccess.Models
                     .AddJsonFile("appsettings.json")
                     .Build();
 
-                var connectionString = configuration.GetConnectionString("ConnectionString");
+                var connectionString = configuration.GetConnectionString("Debug");
+
+                _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
+
                 optionsBuilder.UseInMemoryDatabase(connectionString);
             }
         }
