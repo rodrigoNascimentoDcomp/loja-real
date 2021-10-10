@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Service.Models.ProductSummary>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.ProductId</td>
+            <td>@c.ProductName</td>
+            <td>@c.ProductCategoryName</td>
+        </tr>
+    }
+</table>
