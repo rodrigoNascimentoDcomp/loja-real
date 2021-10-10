@@ -9,6 +9,7 @@ namespace DataAccess.UnitOfWork.Abstract
     public interface IUnitOfWork
     {
         IProductCategoryRepository ProductCategoryRepository { get; }
+        IProductRepository ProductRepository { get; }
 
         int Save();
 
