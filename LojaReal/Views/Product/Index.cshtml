@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Service.Models.ProductSummary>
+﻿@model IEnumerable<DataAccess.Models.Product>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,13 +8,14 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Category</th>
     </tr>
     @foreach (var c in Model)
     {
         <tr>
             <td>@c.ProductId</td>
-            <td>@c.ProductName</td>
-            <td>@c.ProductCategoryName</td>
+            <td>@c.Name</td>
+            <td>@c.Category.Name</td>
         </tr>
     }
 </table>
