@@ -48,7 +48,7 @@ namespace DataAccess.Models
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<Order>()
-                .Property(x => x.Discount)
+                .Property(x => x.DiscountPercentage)
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<Order>()
@@ -76,7 +76,7 @@ namespace DataAccess.Models
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<OrderItem>()
-                .Property(x => x.Discount)
+                .Property(x => x.DiscountPercentage)
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<OrderItem>()
