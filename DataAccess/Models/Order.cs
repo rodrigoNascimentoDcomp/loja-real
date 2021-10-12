@@ -9,9 +9,9 @@ namespace DataAccess.Models
     {
         public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
-        public decimal PriceTotal { get; set; }
-        public decimal DiscountTotal { get; set; }
-        public decimal OrderTotal { get => PriceTotal - DiscountTotal; }
+        public decimal Price { get; set; }
+        public decimal Discount { get; set; }
+        public decimal Total { get => Price - (Price * Discount / 100); }
         public OrderStatus Status { get; set; }
 
         public int ItemId { get; set; }

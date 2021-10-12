@@ -44,15 +44,15 @@ namespace DataAccess.Models
                 .WithOne(x => x.Order);
 
             modelBuilder.Entity<Order>()
-                .Property(x => x.PriceTotal)
+                .Property(x => x.Price)
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<Order>()
-                .Property(x => x.DiscountTotal)
+                .Property(x => x.Discount)
                 .HasPrecision(6, 2);
 
             modelBuilder.Entity<Order>()
-                .Ignore(x => x.OrderTotal);
+                .Ignore(x => x.Total);
 
             modelBuilder.Entity<Order>()
                 .Property(x => x.Status)
