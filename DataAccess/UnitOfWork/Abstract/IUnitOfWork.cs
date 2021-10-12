@@ -8,6 +8,7 @@ namespace DataAccess.UnitOfWork.Abstract
 {
     public interface IUnitOfWork
     {
+        IItemRepository ItemRepository { get; }
         IOrderRepository OrderRepository { get; }
         IOrderItemRepository OrderItemRepository { get; }
         IProductCategoryRepository ProductCategoryRepository { get; }
