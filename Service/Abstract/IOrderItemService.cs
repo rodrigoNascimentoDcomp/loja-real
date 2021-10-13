@@ -8,5 +8,6 @@ namespace Service.Abstract
 {
     public interface IOrderItemService : IGenericService<OrderItem>
     {
+        decimal GetAverageSellingPrice(int itemId);
     }
 }

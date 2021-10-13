@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Service.Models.ItemDetail>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Average selling price</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Item.Product.ProductId</td>
+            <td>@c.Item.Product.Name</td>
+            <td>@c.Item.Product.Category.Name</td>
+            <td>@c.Item.Stock</td>
+            <td>@c.AverageSellingPrice</td>
+        </tr>
+    }
+</table>

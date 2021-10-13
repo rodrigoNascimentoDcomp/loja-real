@@ -32,6 +32,7 @@ namespace LojaReal
             services.AddControllersWithViews();
             services.AddTransient<IUnitOfWork, DataAccess.UnitOfWork.Concrete.UnitOfWork>();
             services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IItemDetailService, ItemDetailService>();
             services.AddTransient<IOrderItemService, OrderItemService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();

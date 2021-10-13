@@ -15,5 +15,12 @@ namespace DataAccess.Repositories.Concrete
         {
             _context = context;
         }
+
+        public decimal GetAverageSellingPrice(int itemId)
+        {
+            return _context.OrderItems
+                .Where(x => x.Item.ItemId == itemId)
+                .Average(x => x.TotalPerUnit);
+        }
     }
 }

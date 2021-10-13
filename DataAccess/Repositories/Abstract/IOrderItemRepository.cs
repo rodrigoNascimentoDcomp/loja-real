@@ -8,5 +8,6 @@ namespace DataAccess.Repositories.Abstract
 {
     public interface IOrderItemRepository : IGenericRepository<OrderItem>
     {
+        decimal GetAverageSellingPrice(int itemId);
     }
 }

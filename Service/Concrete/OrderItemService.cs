@@ -38,5 +38,10 @@ namespace Service.Concrete
         public void Update(OrderItem entityToUpdate) => _unitOfWork.OrderItemRepository.Update(entityToUpdate);
 
         public void Save() => _unitOfWork.OrderItemRepository.Save();
+
+        public decimal GetAverageSellingPrice(int itemId)
+        {
+            return _unitOfWork.OrderItemRepository.GetAverageSellingPrice(itemId);
+        }
     }
 }
