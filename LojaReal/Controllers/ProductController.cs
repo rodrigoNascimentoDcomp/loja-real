@@ -24,7 +24,7 @@ namespace LojaReal.Controllers
 
         public IActionResult Index()
         {
-            var summary = Seed();
+            var summary = _productService.Get();
 
             return View(summary);
         }

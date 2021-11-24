@@ -11,7 +11,7 @@ namespace DataAccess.UnitOfWork.Concrete
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly StoreContext _context = new();
+        private readonly StoreContext _context;
 
         private IItemRepository _itemRepository;
         private IOrderRepository _orderRepository;

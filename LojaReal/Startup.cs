@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.UnitOfWork.Abstract;
 using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaReal
 {
@@ -27,10 +28,17 @@ namespace LojaReal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<StoreContext>();
+            string connectionString = Configuration.GetConnectionString("Debug");
+
+            _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
+
+            services.AddDbContext<StoreContext>(options =>
+                options.UseMySQL(connectionString));
 
             services.AddControllersWithViews();
+
             services.AddTransient<IUnitOfWork, DataAccess.UnitOfWork.Concrete.UnitOfWork>();
+
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IItemDetailService, ItemDetailService>();
             services.AddTransient<IOrderItemService, OrderItemService>();

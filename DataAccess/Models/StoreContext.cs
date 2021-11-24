@@ -11,7 +11,7 @@ namespace DataAccess.Models
 {
     public class StoreContext : DbContext
     {
-        public StoreContext() : base()
+        public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
 
         }
@@ -88,23 +88,6 @@ namespace DataAccess.Models
                 .HasForeignKey(x => x.ProductCategoryId);
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json")
-                    .Build();
-
-                var connectionString = configuration.GetConnectionString("Debug");
-
-                _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
-
-                optionsBuilder.UseInMemoryDatabase(connectionString);
-            }
         }
     }
 }
