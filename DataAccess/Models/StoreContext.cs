@@ -14,11 +14,11 @@ namespace DataAccess.Models
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Produto> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>();
+            modelBuilder.Entity<Produto>();
 
             base.OnModelCreating(modelBuilder);
         }

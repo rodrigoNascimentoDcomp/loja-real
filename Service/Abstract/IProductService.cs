@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace Service.Abstract
 {
-    public interface IProductService : IGenericService<Product>
+    public interface IProductService : IGenericService<Produto>
     {
     }
 }

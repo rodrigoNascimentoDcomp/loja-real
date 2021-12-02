@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataAccess.Models.Product>
+﻿@model IEnumerable<DataAccess.Models.Produto>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -12,8 +12,8 @@
     @foreach (var c in Model)
     {
         <tr>
-            <td>@c.ProductId</td>
-            <td>@c.Name</td>
+            <td>@c.Id</td>
+            <td>@c.Nome</td>
         </tr>
     }
 </table>

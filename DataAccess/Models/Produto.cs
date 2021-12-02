@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    public class Product
+    public class Produto
     {
-        public int ProductId { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
     }
 }
