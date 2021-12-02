@@ -34,38 +34,5 @@ namespace LojaReal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        private IEnumerable<Product> Seed()
-        {
-            ProductCategory firstCategory = new()
-            {
-                ProductCategoryId = 1,
-                Name = "category 1"
-            };
-            
-            ProductCategory secondCategory = new()
-            {
-                ProductCategoryId = 2,
-                Name = "category 2"
-            };
-
-            List<Product> summary = new()
-            {
-                new Product()
-                {
-                    ProductId = 1,
-                    Name = "product 1",
-                    Category = firstCategory
-                },
-                new Product()
-                {
-                    ProductId = 2,
-                    Name = "product 2",
-                    Category = secondCategory
-                }
-            };
-
-            return summary;
-        }
     }
 }
