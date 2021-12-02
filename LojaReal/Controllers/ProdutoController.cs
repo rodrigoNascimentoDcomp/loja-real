@@ -11,20 +11,20 @@ using System.Threading.Tasks;
 
 namespace LojaReal.Controllers
 {
-    public class ProductController : Controller
+    public class ProdutoController : Controller
     {
-        private readonly ILogger<ProductController> _logger;
-        private readonly IProductService _productService;
+        private readonly ILogger<ProdutoController> _logger;
+        private readonly IProdutoService _produtoService;
 
-        public ProductController(ILogger<ProductController> logger, IProductService productService)
+        public ProdutoController(ILogger<ProdutoController> logger, IProdutoService produtoService)
         {
             _logger = logger;
-            _productService = productService;
+            _produtoService = produtoService;
         }
 
         public IActionResult Index()
         {
-            var summary = _productService.Get();
+            var summary = _produtoService.Get();
 
             return View(summary);
         }

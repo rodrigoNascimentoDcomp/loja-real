@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Concrete
 {
-    public class ProductRepository : GenericRepository<Produto>, IProductRepository
+    public class ProdutoRepository : GenericRepository<Produto>, IProdutoRepository
     {
         private readonly StoreContext _context;
 
-        public ProductRepository(StoreContext context) : base(context)
+        public ProdutoRepository(StoreContext context) : base(context)
         {
             _context = context;
         }

@@ -13,12 +13,12 @@ namespace DataAccess.UnitOfWork.Concrete
     {
         private readonly StoreContext _context;
 
-        private IProductRepository _productRepository;
+        private IProdutoRepository _produtoRepository;
 
         public UnitOfWork(StoreContext context) => _context = context;
 
-        public IProductRepository ProductRepository =>
-            _productRepository ??= new ProductRepository(_context);
+        public IProdutoRepository ProdutoRepository =>
+            _produtoRepository ??= new ProdutoRepository(_context);
 
         public int Save() => _context.SaveChanges();
 

@@ -14,7 +14,7 @@ namespace DataAccess.Models
 
         }
 
-        public DbSet<Produto> Products { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

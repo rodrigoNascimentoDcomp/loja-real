@@ -39,7 +39,7 @@ namespace LojaReal
 
             services.AddTransient<IUnitOfWork, DataAccess.UnitOfWork.Concrete.UnitOfWork>();
 
-            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProdutoService, ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
