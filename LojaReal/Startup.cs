@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Service.Abstract;
-using Service.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,8 +37,6 @@ namespace LojaReal
             services.AddControllersWithViews();
 
             services.AddTransient<IUnitOfWork, DataAccess.UnitOfWork.Concrete.UnitOfWork>();
-
-            services.AddTransient<IProdutoService, ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
