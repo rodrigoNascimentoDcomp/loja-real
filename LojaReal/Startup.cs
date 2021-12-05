@@ -31,7 +31,7 @@ namespace LojaReal
 
             _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
 
-            services.AddDbContext<StoreContext>(options =>
+            services.AddDbContext<LojaContext>(options =>
                 options.UseMySQL(connectionString));
 
             services.AddControllersWithViews();

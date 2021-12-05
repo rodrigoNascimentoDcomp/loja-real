@@ -11,10 +11,10 @@ namespace DataAccess.Repositories.Concrete
 {
     public class GenericRepository<TEntity> : IDisposable, IGenericRepository<TEntity> where TEntity : class
     {
-        internal StoreContext context;
+        internal LojaContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(StoreContext context)
+        public GenericRepository(LojaContext context)
         {
             this.context = context;
             dbSet = context.Set<TEntity>();

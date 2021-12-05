@@ -11,9 +11,9 @@ namespace DataAccess.UnitOfWork.Concrete
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly StoreContext _context;
+        private readonly LojaContext _context;
 
-        public UnitOfWork(StoreContext context) => _context = context;
+        public UnitOfWork(LojaContext context) => _context = context;
 
         public int Save() => _context.SaveChanges();
 
