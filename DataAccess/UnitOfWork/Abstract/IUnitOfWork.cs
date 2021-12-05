@@ -8,6 +8,8 @@ namespace DataAccess.UnitOfWork.Abstract
 {
     public interface IUnitOfWork
     {
+        IProdutoRepository ProdutoRepository { get; }
+
         int Save();
 
         void Dispose();
