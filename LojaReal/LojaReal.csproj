@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Loja\" />
-    <Folder Include="Views\Categorium\" />
   </ItemGroup>
 
 </Project>

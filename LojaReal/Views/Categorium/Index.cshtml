@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DataAccess.Models.Categorium>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+    </tr>
+    @foreach (var c in Model ?? new List<DataAccess.Models.Categorium>())
+    {
+        <tr>
+            <td>@c.Id</td>
+            <td>@c.Nome</td>
+        </tr>
+    }
+</table>
