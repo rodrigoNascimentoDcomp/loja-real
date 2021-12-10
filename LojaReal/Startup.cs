@@ -36,6 +36,7 @@ namespace LojaReal
                 options.UseMySQL(connectionString));
 
             services.AddTransient<ICategoriumService, CategoriumService>();
+            services.AddTransient<ILojaService, LojaService>();
             services.AddTransient<IProdutoService, ProdutoService>();
 
             services.AddControllersWithViews();
