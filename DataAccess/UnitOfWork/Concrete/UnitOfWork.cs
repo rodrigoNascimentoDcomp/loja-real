@@ -14,12 +14,16 @@ namespace DataAccess.UnitOfWork.Concrete
         private readonly LojaContext _context;
 
         private ICategoriumRepository _categoriumRepository;
+        private ILojaRepository _lojaRepository;
         private IProdutoRepository _produtoRepository;
 
         public UnitOfWork(LojaContext context) => _context = context;
 
         public ICategoriumRepository CategoriumRepository =>
             _categoriumRepository ??= new CategoriumRepository(_context);
+        
+        public ILojaRepository LojaRepository =>
+            _lojaRepository ??= new LojaRepository(_context);
         
         public IProdutoRepository ProdutoRepository =>
             _produtoRepository ??= new ProdutoRepository(_context);

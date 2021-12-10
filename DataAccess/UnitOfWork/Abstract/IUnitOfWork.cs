@@ -9,6 +9,7 @@ namespace DataAccess.UnitOfWork.Abstract
     public interface IUnitOfWork
     {
         ICategoriumRepository CategoriumRepository { get; }
+        ILojaRepository LojaRepository { get; }
         IProdutoRepository ProdutoRepository { get; }
 
         int Save();
