@@ -9,7 +9,7 @@
         <th>Código</th>
         <th>Nome</th>
     </tr>
-    @foreach (var c in Model)
+    @foreach (var c in Model ?? new List<DataAccess.Models.Produto>())
     {
         <tr>
             <td>@c.Id</td>
