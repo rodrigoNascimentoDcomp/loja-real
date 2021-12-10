@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using DataAccess.UnitOfWork.Abstract;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using Service.Concrete;
 
 namespace LojaReal
 {
@@ -33,6 +34,8 @@ namespace LojaReal
 
             services.AddDbContext<LojaContext>(options =>
                 options.UseMySQL(connectionString));
+
+            services.AddTransient<IProdutoService, ProdutoService>();
 
             services.AddControllersWithViews();
 

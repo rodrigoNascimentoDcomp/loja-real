@@ -1,6 +1,7 @@
 ﻿using LojaReal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Service.Abstract;
 using System.Diagnostics;
 
 namespace LojaReal.Controllers
@@ -8,15 +9,18 @@ namespace LojaReal.Controllers
     public class ProdutoController : Controller
     {
         private readonly ILogger<ProdutoController> _logger;
+        private readonly IProdutoService _produtoService;
 
-        public ProdutoController(ILogger<ProdutoController> logger)
+        public ProdutoController(ILogger<ProdutoController> logger, IProdutoService produtoService)
         {
             _logger = logger;
+            _produtoService = produtoService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var produtos = _produtoService.Get();
+            return View(produtos);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
