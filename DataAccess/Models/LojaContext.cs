@@ -19,6 +19,8 @@ namespace DataAccess.Models
 
         public virtual DbSet<Boleto> Boletos { get; set; }
         public virtual DbSet<CartaoCredito> CartaoCreditos { get; set; }
+        public virtual DbSet<Catalogo> Catalogos { get; set; }
+        public virtual DbSet<CategoriaLoja> CategoriaLojas { get; set; }
         public virtual DbSet<CategoriaProduto> CategoriaProdutos { get; set; }
         public virtual DbSet<Categorium> Categoria { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
@@ -89,6 +91,80 @@ namespace DataAccess.Models
                     .IsRequired()
                     .HasMaxLength(45)
                     .HasColumnName("titular");
+            });
+
+            modelBuilder.Entity<Catalogo>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("catalogo");
+
+                entity.HasIndex(e => e.LojaCnpj, "fk_catalogo_loja_idx");
+
+                entity.HasIndex(e => e.ProdutoId, "fk_catalogo_produto_idx");
+
+                entity.Property(e => e.Detalhes)
+                    .HasMaxLength(45)
+                    .HasColumnName("detalhes");
+
+                entity.Property(e => e.LojaCnpj)
+                    .HasColumnType("bigint unsigned")
+                    .HasColumnName("loja_cnpj");
+
+                entity.Property(e => e.Preco)
+                    .HasColumnType("decimal(10,0)")
+                    .HasColumnName("preco");
+
+                entity.Property(e => e.ProdutoId)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("produto_id");
+
+                entity.Property(e => e.Quantidade)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("quantidade");
+
+                entity.HasOne(d => d.LojaCnpjNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.LojaCnpj)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_catalogo_loja");
+
+                entity.HasOne(d => d.Produto)
+                    .WithMany()
+                    .HasForeignKey(d => d.ProdutoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_catalogo_produto");
+            });
+
+            modelBuilder.Entity<CategoriaLoja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("categoria_loja");
+
+                entity.HasIndex(e => e.CateogriaId, "fk_categoria_loja_categoria_idx");
+
+                entity.HasIndex(e => e.LojaCnpj, "fk_categoria_loja_loja_idx");
+
+                entity.Property(e => e.CateogriaId)
+                    .HasColumnType("int unsigned")
+                    .HasColumnName("cateogria_id");
+
+                entity.Property(e => e.LojaCnpj)
+                    .HasColumnType("bigint unsigned")
+                    .HasColumnName("loja_cnpj");
+
+                entity.HasOne(d => d.Cateogria)
+                    .WithMany()
+                    .HasForeignKey(d => d.CateogriaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_categoria_loja_categoria");
+
+                entity.HasOne(d => d.LojaCnpjNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.LojaCnpj)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_categoria_loja_loja");
             });
 
             modelBuilder.Entity<CategoriaProduto>(entity =>
