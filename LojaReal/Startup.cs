@@ -1,3 +1,5 @@
+using AutoMapper;
+using LojaReal.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,7 @@ using DataAccess.UnitOfWork.Abstract;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Service.Concrete;
+using System.Reflection;
 
 namespace LojaReal
 {
@@ -31,6 +34,17 @@ namespace LojaReal
             string connectionString = Configuration.GetConnectionString("Debug");
 
             _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            var mapper = mapperConfiguration.CreateMapper();
+
+            services.AddSingleton(mapper);
 
             services.AddDbContext<LojaContext>(options =>
                 options.UseMySQL(connectionString));

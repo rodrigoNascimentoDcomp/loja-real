@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataAccess.Models.Produto>
+﻿@model IEnumerable<LojaReal.Models.ProdutoModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,12 +8,18 @@
     <tr>
         <th>Código</th>
         <th>Nome</th>
+        <th>Especificação</th>
+        <th>Status</th>
     </tr>
-    @foreach (var c in Model ?? new List<DataAccess.Models.Produto>())
+    @foreach (var c in Model ?? new List<LojaReal.Models.ProdutoModel>())
     {
         <tr>
             <td>@c.Id</td>
             <td>@c.Nome</td>
+            <td>@c.Especificacao</td>
+            <td>@c.Status</td>
         </tr>
     }
 </table>
+
+<button onclick="location.href='@Url.Action("Cadastro", "Produto")'">Cadastrar</button>
