@@ -56,5 +56,23 @@ namespace LojaReal.Controllers
 
             return View("Index");
         }
+
+        [HttpPost]
+        [Route("Remover/{id}")]
+        public IActionResult Remover(int id)
+        {
+            if (!ModelState.IsValid)
+                throw new InvalidOperationException();
+
+            var produto = _produtoService.GetByID(id);
+
+            if (produto == null)
+                throw new InvalidOperationException();
+
+            _produtoService.Delete(produto.Id);
+            _produtoService.Save();
+
+            return View("Index");
+        }
     }
 }

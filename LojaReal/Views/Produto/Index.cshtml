@@ -13,12 +13,18 @@
     </tr>
     @foreach (var c in Model ?? new List<LojaReal.Models.ProdutoModel>())
     {
-        <tr>
-            <td>@c.Id</td>
-            <td>@c.Nome</td>
-            <td>@c.Especificacao</td>
-            <td>@c.Status</td>
-        </tr>
+        @using (Html.BeginForm("Remover", "Produto", routeValues: new {id=@c.Id}, FormMethod.Post))
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Nome</td>
+                <td>@c.Especificacao</td>
+                <td>@c.Status</td>
+                <td>
+                    <input type="submit" value="Remover" name="submit" />
+                </td>
+            </tr>
+        }
     }
 </table>
 
