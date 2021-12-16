@@ -54,11 +54,37 @@ namespace LojaReal.Controllers
 
             _produtoService.Insert(produto);
 
-            return View("Index");
+            return RedirectToAction("Index", "Produto");
+        }
+
+        public IActionResult Alteracao(int id)
+        {
+            var produto = _produtoService.GetByID(id);
+
+            if (produto == null)
+                throw new InvalidOperationException();
+
+            var produtoModel = _mapper.Map<ProdutoModel>(produto);
+
+            return View("Alteracao", produtoModel);
         }
 
         [HttpPost]
-        [Route("Remover/{id}")]
+        public IActionResult Alterar(Produto produto)
+        {
+            if (!ModelState.IsValid)
+                throw new InvalidOperationException();
+
+            if (produto == null)
+                throw new ArgumentNullException(nameof(produto));
+
+            _produtoService.Update(produto);
+            _produtoService.Save();
+
+            return RedirectToAction("Index", "Produto");
+        }
+
+        [HttpPost]
         public IActionResult Remover(int id)
         {
             if (!ModelState.IsValid)
@@ -72,7 +98,7 @@ namespace LojaReal.Controllers
             _produtoService.Delete(produto.Id);
             _produtoService.Save();
 
-            return View("Index");
+            return RedirectToAction("Index", "Produto");
         }
     }
 }
