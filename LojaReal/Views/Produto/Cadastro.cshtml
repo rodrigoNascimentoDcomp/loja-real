@@ -6,9 +6,6 @@
 
 @using (Html.BeginForm("Cadastrar", "Produto", FormMethod.Post))
 {
-   @Html.HiddenFor(m => m.Id)
-   @Html.AntiForgeryToken()
-
    <div class="col margin-top-20 form-group text-center">
       <div>
          @Html.LabelFor(m => m.Nome)

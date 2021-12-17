@@ -44,7 +44,7 @@ namespace LojaReal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(Produto produto)
+        public IActionResult Cadastrar(ProdutoModel produto)
         {
             if (!ModelState.IsValid)
                 throw new InvalidOperationException();
@@ -52,7 +52,8 @@ namespace LojaReal.Controllers
             if (produto == null)
                 throw new ArgumentNullException(nameof(produto));
 
-            _produtoService.Insert(produto);
+            _produtoService.Insert(_mapper.Map<Produto>(produto));
+            _produtoService.Save();
 
             return RedirectToAction("Index", "Produto");
         }
@@ -70,7 +71,7 @@ namespace LojaReal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(Produto produto)
+        public IActionResult Alterar(ProdutoModel produto)
         {
             if (!ModelState.IsValid)
                 throw new InvalidOperationException();
@@ -78,7 +79,7 @@ namespace LojaReal.Controllers
             if (produto == null)
                 throw new ArgumentNullException(nameof(produto));
 
-            _produtoService.Update(produto);
+            _produtoService.Update(_mapper.Map<Produto>(produto));
             _produtoService.Save();
 
             return RedirectToAction("Index", "Produto");

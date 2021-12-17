@@ -6,6 +6,7 @@ namespace LojaReal.Models
 {
     public class ProdutoModel
     {
+        [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Informe o nome do produto.")]
         [StringLength(45)]
