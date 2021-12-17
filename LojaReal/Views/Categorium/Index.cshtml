@@ -6,7 +6,7 @@
 
 <table class="table table-bordered table-responsive table-hover">
     <tr>
-        <th>Id</th>
+        <th>Código</th>
         <th>Nome</th>
     </tr>
     @foreach (var c in Model ?? new List<DataAccess.Models.Categorium>())
@@ -14,6 +14,21 @@
         <tr>
             <td>@c.Id</td>
             <td>@c.Nome</td>
+            <td>
+                @using (Html.BeginForm("Alteracao", "Categorium", routeValues: new {id=@c.Id}, FormMethod.Get))
+                {
+                    <input type="submit" value="Alterar" name="submit" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("Remover", "Categorium", routeValues: new {id=@c.Id}, FormMethod.Post))
+                {
+                    <input type="submit" value="Remover" name="submit" />
+                }
+                    
+            </td>
         </tr>
     }
 </table>
+
+<button onclick="location.href='@Url.Action("Cadastro", "Categorium")'">Cadastrar</button>
