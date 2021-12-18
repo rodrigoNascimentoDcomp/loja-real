@@ -11,26 +11,22 @@ namespace DataAccess.UnitOfWork.Concrete
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly StoreContext _context;
+        private readonly LojaContext _context;
 
-        private IItemRepository _itemRepository;
-        private IOrderRepository _orderRepository;
-        private IOrderItemRepository _orderItemRepository;
-        private IProductCategoryRepository _productCategoryRepository;
-        private IProductRepository _productRepository;
+        private ICategoriumRepository _categoriumRepository;
+        private ILojaRepository _lojaRepository;
+        private IProdutoRepository _produtoRepository;
 
-        public UnitOfWork(StoreContext context) => _context = context;
+        public UnitOfWork(LojaContext context) => _context = context;
 
-        public IItemRepository ItemRepository =>
-            _itemRepository ??= new ItemRepository(_context);
-        public IOrderRepository OrderRepository =>
-            _orderRepository ??= new OrderRepository(_context);
-        public IOrderItemRepository OrderItemRepository =>
-            _orderItemRepository ??= new OrderItemRepository(_context);
-        public IProductCategoryRepository ProductCategoryRepository =>
-            _productCategoryRepository ??= new ProductCategoryRepository(_context);
-        public IProductRepository ProductRepository =>
-            _productRepository ??= new ProductRepository(_context);
+        public ICategoriumRepository CategoriumRepository =>
+            _categoriumRepository ??= new CategoriumRepository(_context);
+        
+        public ILojaRepository LojaRepository =>
+            _lojaRepository ??= new LojaRepository(_context);
+        
+        public IProdutoRepository ProdutoRepository =>
+            _produtoRepository ??= new ProdutoRepository(_context);
 
         public int Save() => _context.SaveChanges();
 

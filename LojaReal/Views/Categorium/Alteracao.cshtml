@@ -1,0 +1,21 @@
+﻿@model DataAccess.Models.Categorium
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Alterar", "Categorium", FormMethod.Post))
+{
+   @Html.HiddenFor(m => m.Id)
+   @Html.AntiForgeryToken()
+
+   <div class="col margin-top-20 form-group text-center">
+      <div>
+         @Html.LabelFor(m => m.Nome)
+         @Html.TextBoxFor(m => m.Nome)
+      </div>
+      <br/>
+      <input type="submit" value="Salvar" name="submit" />
+      
+   </div>
+}

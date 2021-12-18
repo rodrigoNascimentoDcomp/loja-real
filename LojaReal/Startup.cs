@@ -1,3 +1,5 @@
+using AutoMapper;
+using LojaReal.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Service.Abstract;
-using Service.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ using System.Threading.Tasks;
 using DataAccess.UnitOfWork.Abstract;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using Service.Concrete;
+using System.Reflection;
 
 namespace LojaReal
 {
@@ -32,19 +35,27 @@ namespace LojaReal
 
             _ = connectionString ?? throw new KeyNotFoundException("Connection string not found");
 
-            services.AddDbContext<StoreContext>(options =>
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            var mapper = mapperConfiguration.CreateMapper();
+
+            services.AddSingleton(mapper);
+
+            services.AddDbContext<LojaContext>(options =>
                 options.UseMySQL(connectionString));
+
+            services.AddTransient<ICategoriumService, CategoriumService>();
+            services.AddTransient<ILojaService, LojaService>();
+            services.AddTransient<IProdutoService, ProdutoService>();
 
             services.AddControllersWithViews();
 
             services.AddTransient<IUnitOfWork, DataAccess.UnitOfWork.Concrete.UnitOfWork>();
-
-            services.AddTransient<IItemService, ItemService>();
-            services.AddTransient<IItemDetailService, ItemDetailService>();
-            services.AddTransient<IOrderItemService, OrderItemService>();
-            services.AddTransient<IOrderService, OrderService>();
-            services.AddTransient<IProductCategoryService, ProductCategoryService>();
-            services.AddTransient<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

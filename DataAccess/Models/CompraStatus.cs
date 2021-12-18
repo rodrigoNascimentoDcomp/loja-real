@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DataAccess.Models
 {
-    public partial class Item
+    public partial class CompraStatus
     {
-        public int Numero { get; set; }
-        public int Quantidade { get; set; }
-        public decimal Valor { get; set; }
         public int CompraId { get; set; }
+        public int StatusId { get; set; }
+        public DateTime Data { get; set; }
 
         public virtual Compra Compra { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<DataAccess.Models.Loja>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Cnpj</th>
+        <th>Nome</th>
+        <th>Numero De Vendas</th>
+        <th>UsuarioLogin</th>
+    </tr>
+    @foreach (var c in Model ?? new List<DataAccess.Models.Loja>())
+    {
+        <tr>
+            <td>@c.Cnpj</td>
+            <td>@c.Nome</td>
+            <td>@c.NumeroDeVendas</td>
+            <td>@c.UsuarioLogin</td>
+        </tr>
+    }
+</table>

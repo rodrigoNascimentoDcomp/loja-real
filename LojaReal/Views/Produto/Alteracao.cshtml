@@ -1,0 +1,31 @@
+﻿@model LojaReal.Models.ProdutoModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Alterar", "Produto", FormMethod.Post))
+{
+   @Html.HiddenFor(m => m.Id)
+   @Html.AntiForgeryToken()
+
+   <div class="col margin-top-20 form-group text-center">
+      <div>
+         @Html.LabelFor(m => m.Nome)
+         @Html.TextBoxFor(m => m.Nome)
+      </div>
+      <div>
+         @Html.LabelFor(m => m.Especificacao, "Especificação")
+         @Html.TextBoxFor(m => m.Especificacao)
+      </div>
+      <div>
+         @Html.LabelFor(m => m.Status)
+         @Html.DropDownListFor(m => m.Status, 
+            new SelectList(Enum.GetValues(typeof(LojaReal.Enums.ProdutoStatus))), 
+            "Selecione o status")
+      </div>
+      <br/>
+      <input type="submit" value="Salvar" name="submit" />
+      
+   </div>
+}

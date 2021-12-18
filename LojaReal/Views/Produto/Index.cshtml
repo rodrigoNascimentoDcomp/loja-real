@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LojaReal.Models.ProdutoModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Especificação</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var c in Model ?? new List<LojaReal.Models.ProdutoModel>())
+    {
+        <tr>
+            <td>@c.Id</td>
+            <td>@c.Nome</td>
+            <td>@c.Especificacao</td>
+            <td>@c.Status</td>
+            <td>
+                @using (Html.BeginForm("Alteracao", "Produto", routeValues: new {id=@c.Id}, FormMethod.Get))
+                {
+                    <input type="submit" value="Alterar" name="submit" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("Remover", "Produto", routeValues: new {id=@c.Id}, FormMethod.Post))
+                {
+                    <input type="submit" value="Remover" name="submit" />
+                }
+                    
+            </td>
+        </tr>
+    }
+</table>
+
+<button onclick="location.href='@Url.Action("Cadastro", "Produto")'">Cadastrar</button>

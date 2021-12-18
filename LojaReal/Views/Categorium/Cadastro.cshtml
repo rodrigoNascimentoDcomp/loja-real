@@ -1,0 +1,18 @@
+﻿@model DataAccess.Models.Categorium
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Cadastrar", "Categorium", FormMethod.Post))
+{
+   <div class="col margin-top-20 form-group text-center">
+      <div>
+         @Html.LabelFor(m => m.Nome)
+         @Html.TextBoxFor(m => m.Nome)
+      </div>
+      <br/>
+      <input type="submit" value="Cadastrar" name="submit" />
+      
+   </div>
+}
